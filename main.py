@@ -2,6 +2,8 @@ import keyboard
 import time
 from PIL import Image
 import pyautogui
+import numpy as np
+import cv2
 
 # DEFINING DIFFERENT CRUCIAL 
 
@@ -44,10 +46,7 @@ screenshot2 = pyautogui.screenshot(region=bbox2)
 print("Press R to start")
 keyboard.wait('r')
 
-# Nye Koder
-import cv2
-import numpy as np
-import pyautogui
+# New Code
 
 def capture_screen(region=None):
     screenshot = pyautogui.screenshot(region=region)
@@ -82,5 +81,4 @@ def main():
 
     cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    main()
+main()
