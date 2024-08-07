@@ -47,7 +47,7 @@ print("Press R to start")
 keyboard.wait('r')
 
 # New Code
-# Need a variable to know where on the screen the car is
+# Need a variable to know where on the screen the car is because its limited how much to the ledt and right you can move
 def capture_screen(region=None):
     screenshot = pyautogui.screenshot(region=region)
     img_bgr = np.array(screenshot)
@@ -63,7 +63,7 @@ def find_and_move(template, screen, threshold=0.9):
         # Calculate the center of the template match location
         center_x = max_loc[0] + template.shape[1] // 2
         center_y = max_loc[1] + template.shape[0] // 2
-        # Need to have a if sentence to decide where the rock is out of the 3 positions
+        # Need to have a if sentence to decide where the rock is out of the 3 positions and where to move based on where the player is, think 3x3 possibilites
         pyautogui.click(center_x, center_y) # Change this to move either left or right
 
 
