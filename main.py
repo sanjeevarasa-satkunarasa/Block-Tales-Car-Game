@@ -43,3 +43,44 @@ screenshot2 = pyautogui.screenshot(region=bbox2)
 # START
 print("Press R to start")
 keyboard.wait('r')
+
+# Nye Koder
+import cv2
+import numpy as np
+import pyautogui
+
+def capture_screen(region=None):
+    screenshot = pyautogui.screenshot(region=region)
+    img_bgr = np.array(screenshot)
+    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+    return img_rgb
+
+def find_and_click(template, screen, threshold=0.9):
+    result = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
+    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
+
+    # Check if the match is above the threshold
+    if max_val > threshold:
+        # Calculate the center of the template match location
+        center_x = max_loc[0] + template.shape[1] // 2
+        center_y = max_loc[1] + template.shape[0] // 2
+        pyautogui.click(center_x, center_y)
+
+
+def main():
+    # Load the template image
+    template = cv2.imread("needle.png", cv2.IMREAD_COLOR)
+
+    while True:
+        screen = capture_screen()
+
+        find_and_click(template, screen)
+
+        # Break the loop if 'q' is pressed
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    main()
