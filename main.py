@@ -38,7 +38,7 @@ bbox2 = (top_left2[0], top_left2[1], width2, height2)
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 screenshot1 = pyautogui.screenshot(region=bbox1)
-
+screenshot2 = pyautogui.screenshot(region=bbox2)
 
 # START
 print("Press R to start")
