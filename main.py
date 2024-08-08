@@ -7,10 +7,16 @@ import cv2
 
 # Define control functions
 def move_left():
-    pyautogui.press('a')
+    keyboard.press('a')
+    time.sleep(0.1)
+    keyboard.release('a')
+    time.sleep(0.1)
 
 def move_right():
-    pyautogui.press('d')
+    keyboard.press('d')
+    time.sleep(0.1)
+    keyboard.release('d')
+    time.sleep(0.1)
 
 # Function to capture the screen
 def capture_screen(region=None):
@@ -66,6 +72,9 @@ def main():
     global car_x
     car_x = 2  # Initialize car position in the middle
 
+    # Define the region to capture (left, top, width, height)
+    region = (666, 293, 587, 492)
+    
     while True:
         screen = capture_screen()
         find_and_move(templates, screen)
