@@ -27,6 +27,9 @@ def capture_screen(region=None):
 
 # Function to find and move based on templates
 def find_and_move(templates, screen, threshold=0.9):
+
+    global car_x
+    
     for template in templates:
         result = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
@@ -40,16 +43,19 @@ def find_and_move(templates, screen, threshold=0.9):
                 if 0 <= center_x < 200:
                     if car_x == 1:
                         move_right()
+                        print("Moving right")
                         car_x = 2
                         continue
                 elif 200 <= center_x < 400:
                     if car_x == 2:
                         move_right()
+                        print("Moving right")
                         car_x = 3
                         continue
                 else:
                     if car_x == 3:
                         move_left()
+                        print("Moving left")
                         car_x = 2
                         continue
             else:
